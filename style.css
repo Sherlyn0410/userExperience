@@ -1,0 +1,406 @@
+/* Login page */
+.login-body {
+  background: url('img/loginbg.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 25%);
+  background-color: rgba(255, 255, 255, 1);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 450px;
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form-container input,
+.login-form-container button {
+  margin-bottom: 10px;
+}
+
+.login-form-container .cancelbtn {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Form styling enhancements */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+}
+
+.form-control:focus {
+    border-color: #B62020;
+    box-shadow: 0 0 0 0.2rem rgba(182, 32, 32, 0.25);
+}
+
+/* Index page styles */
+.navbar {
+    border-bottom: 1px solid #eee;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.nav-link.active {
+    color: #000 !important;
+    font-weight: 600;
+}
+
+.nav-link {
+    color: #6c757d !important;
+    font-weight: 500;
+}
+
+.hero-section {
+    position: relative;
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+}
+
+.hero-banner {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('img/FoodFestival.png') center/cover no-repeat;
+    opacity: 0.9;
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-details {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.upcoming-events {
+    background-color: #FFFFFF;
+}
+
+.event-card {
+    border: none !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    box-shadow: none !important;
+    background-color: transparent;
+}
+
+.event-card:hover {
+    transform: translateY(-5px) scale(1.02); /* scale the whole card instead of the image */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ensure the image is rounded but remove its own transition */
+.event-card .card-img-top {
+    height: 150px;
+    object-fit: cover;
+    /* removed transition here so the card handles animation */
+    border-radius: 12px !important; /* force full rounding */
+    width: 100%;
+    display: block;
+    margin-bottom: 0; /* keep image flush with card */
+    will-change: auto;
+    backface-visibility: hidden;
+}
+
+.event-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.event-meta {
+    font-size: 0.85rem;
+}
+
+.event-meta i {
+    color: #64748B;
+    width: 14px;
+    font-size: 1rem !important;
+}
+
+/* Dropdown styling */
+.dropdown-toggle::after {
+    margin-left: 0.5rem;
+}
+
+/* Page header (red banner) */
+.page-header{
+    background-color: #B62020;
+    color: #FFF;
+}
+
+.page-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Create form adjustments to match provided UI */
+.create-event-form .form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.create-event-form .form-control,
+.create-event-form .form-select,
+.create-event-form textarea {
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+  padding: 12px 14px;
+  background-color: #fff;
+}
+
+.create-event-form textarea {
+  resize: vertical;
+}
+
+.create-event-form .form-control-file {
+  padding: 6px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  border: 1px solid #e6e6e6;
+}
+
+/* Buttons */
+.btn-outline-secondary {
+  border-radius: 8px;
+  padding: 8px 20px;
+  color: #333;
+}
+
+.btn-red {
+  background-color: #B62020;
+  border: none;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.btn-red:hover {
+  background-color: #991818;
+  color: #FFF;
+}
+
+/* custom status tabs (simple underline style at bottom) */
+.status-tabs {
+  --tab-gap: 0.5rem;
+}
+
+.status-tab-btn {
+  background: transparent;
+  border: 0;
+  color: #6c757d;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.status-tab-btn:hover {
+  color: #333;
+}
+
+.status-tab-btn.active {
+  color: #111;
+  border-bottom-color: #B62020; /* red underline */
+  font-weight: 600;
+}
+
+/* Keep tabs responsive */
+@media (max-width: 767px) {
+  .status-tabs { margin-bottom: 0.5rem; }
+  .status-tab-btn { padding: 0.45rem 0.6rem; font-size: 0.95rem; }
+}
+
+/* ensure each event card has a subtle border and keeps rounded corners */
+#eventsList .event-card {
+  border: 1px solid #e6e6e6 !important;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ensure the image stays clipped to rounded corners */
+.event-card .card-img-top {
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* ensure dropdowns sit on top and are not clipped by card overflow */
+#eventsList .event-card {
+  overflow: visible; /* allow dropdown to escape card bounds (image rounding preserved by image border-radius) */
+}
+
+#eventsList .dropdown-menu {
+  z-index: 9999 !important; /* bring to front */
+  min-width: 180px;
+}
+
+/* Attendees list: make each item match the event card style */
+#attendeesModal .list-group-item {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start; /* top align content */
+}
+
+/* avatar sizing & consistent alignment */
+#attendeesModal .list-group-item .avatar {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  font-size: 1.05rem;
+  line-height: 48px;
+}
+
+/* ensure metadata lines stack cleanly */
+#attendeesModal .list-group-item .small.text-muted {
+  display: block;
+  margin-top: 0.35rem;
+}
+
+/* action buttons column stays compact and aligned */
+#attendeesModal .list-group-item .accept-btn,
+#attendeesModal .list-group-item .reject-btn {
+  min-width: 96px;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
+
+/* remove extra default list-group spacing inside modal body */
+#attendeesModal .modal-body .list-group {
+  padding: 0;
+}
+
+/* last-item spacing clean-up */
+#attendeesModal .list-group-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+    }
+    
+    .hero-banner {
+        min-height: 300px;
+    }
+    
+    .create-event-form .w-25 { width: 100% !important; }
+    .page-header .header-bar { text-align: left; }
+}
+
+/* Card animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.event-card:nth-child(1) { animation-delay: 0.1s; }
+.event-card:nth-child(2) { animation-delay: 0.2s; }
+.event-card:nth-child(3) { animation-delay: 0.3s; }
+.event-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* Carousel styles */
+.hero-carousel {
+    height: 500px;
+}
+
+.carousel-item {
+    height: 500px;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    position: relative;
+}
+
+.carousel-item img {
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-indicators .active {
+    background-color: #B62020;
+}
+

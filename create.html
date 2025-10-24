@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTI - Event Management System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="create.html">
+    <!-- navbar will be injected here -->
+    <div id="main-navbar"></div>
+
+    <!-- Page header (red) -->
+    <header class="page-header">
+      <div class="container px-2 py-4">
+          <h2 class="m-0 text-white">Create New Event</h2>
+      </div>
+    </header>
+
+    <main class="py-5">
+      <div class="container">
+        <form class="create-event-form" action="">
+          <div class="mb-4">
+            <label class="form-label fw-semibold">What's the name of your event?</label>
+            <input class="form-control mb-2" type="text" placeholder="Event Title" required>
+            <textarea class="form-control" rows="3" placeholder="Event Description" required></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">When does your event start and end?</label>
+            <div class="row g-2">
+              <div class="col-md-4">
+                <input class="form-control" type="date" required>
+              </div>
+              <div class="col-md-4 d-flex gap-2">
+                <input class="form-control" type="time" placeholder="Start time" required>
+              </div>
+              <div class="col-md-4 d-flex gap-2">
+                <input class="form-control" type="time" placeholder="End time" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Where is it located?</label>
+            <select id="campus" class="form-select" required>
+              <option value="">Select campus</option>
+              <option value="1">INTI International University</option>
+              <option value="2">INTI International College Subang</option>
+              <option value="3">INTI International College Penang</option>
+              <option value="4">INTI International College Sabah</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">What's the capacity for your event?</label>
+            <div class="text-muted mb-2">Event capacity refers to the maximum number of registrants allowed.</div>
+            <input class="form-control w-25" type="number" min="10" placeholder="Capacity" required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Upload Event Image</label><br>
+            <input class="form-control form-control-file w-auto" type="file" accept="image/*">
+          </div>
+
+          <div class="d-flex justify-content-end gap-3">
+            <a href="index.html" class="btn btn-outline-secondary">Exit</a>
+            <button class="btn btn-red" type="submit">Create event</button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Bootstrap + navbar injector -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+
+    <script>
+      (function () {
+        const form = document.querySelector('.create-event-form');
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // disable submit to prevent duplicates
+          const submitBtn = form.querySelector('button[type="submit"]');
+          if (submitBtn) submitBtn.disabled = true;
+
+          // redirect to manage page which will display the success toast (manage.html handles ?created=1)
+          setTimeout(function () {
+            window.location.href = 'manage.html?created=1';
+          }, 150);
+        }, { passive: false });
+      })();
+    </script>
+  </body>
+</html>

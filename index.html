@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTI - Event Management System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="index.html">
+    <!-- navbar will be injected here -->
+    <div id="main-navbar"></div>
+
+    <!-- Featured Event Carousel -->
+    <section class="hero-section">
+        <div id="eventCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#eventCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#eventCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#eventCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#eventCarousel" data-bs-slide-to="3"></button>
+            </div>
+
+            <!-- Carousel Content -->
+            <div class="carousel-inner">
+                <!-- Food Festival Slide -->
+                <div class="carousel-item active">
+                    <img src="img/InternationalCharityFoodFestival.jpg" class="d-block w-100" alt="International Charity Food Festival">
+                </div>
+
+                <!-- Counselling Awareness Slide -->
+                <div class="carousel-item">
+                    <img src="img/CounsellingAwarenessMonth2024.jpg" class="d-block w-100" alt="Counselling Awareness Month 2024">
+                </div>
+
+                <!-- Anti-Drug Campaign Slide -->
+                <div class="carousel-item">
+                    <img src="img/Anti-DrugCampaign.jpg" class="d-block w-100" alt="Anti-Drug Campaign">
+                </div>
+
+                <!-- Fun Games Slide -->
+                <div class="carousel-item">
+                    <img src="img/FunGamesforHappyMinds.jpg" class="d-block w-100" alt="Fun Games for Happy Minds">
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-events py-5">
+        <div class="container">
+            <h2 class="fw-bold mb-4">Upcoming Events</h2>
+            
+            <div class="row g-4">
+                <!-- Counselling Awareness Month 2024 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/CounsellingAwarenessMonth2024.jpg" class="card-img-top" alt="Counselling Awareness Month 2024">
+                        <div class="card-body">
+                            <h5 class="card-title">Counselling Awareness Month 2024</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International College Penang
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    67 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- International Charity Food Festival -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/InternationalCharityFoodFestival.jpg" class="card-img-top" alt="International Charity Food Festival">
+                        <div class="card-body">
+                            <h5 class="card-title">International Charity Food Festival</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International University
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    80 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anti-Drug Campaign -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/Anti-DrugCampaign.jpg" class="card-img-top" alt="Anti-Drug Campaign">
+                        <div class="card-body">
+                            <h5 class="card-title">Anti-Drug Campaign</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International College Subang
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    67 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fun Games for Happy Minds -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/FunGamesforHappyMinds.jpg" class="card-img-top" alt="Fun Games for Happy Minds">
+                        <div class="card-body">
+                            <h5 class="card-title">Fun Games for Happy Minds</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International College Subang
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    52 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Modal -->
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold" id="modalEventTitle">Counselling Awareness Month 2024</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-4">
+        <!-- Event Image -->
+        <div class="mb-3 modal-banner">
+          <img id="modalEventImage" src="img/CounsellingAwarenessMonth2024.jpg" alt="Event image" class="img-fluid rounded-3 w-100">
+        </div>
+
+        <!-- Event Details Grid -->
+        <div class="row mb-3">
+          <div class="col-md-6 d-flex gap-2 align-items-start">
+            <i class="bi bi-calendar3 me-2 text-red"></i>
+            <div>
+              <h6 class="fw-semibold mb-1">Date and Time</h6>
+              <div class="text-muted" id="modalEventDateTime">Mon, 2 Sep 2024 • 10:00 AM</div>
+            </div>
+          </div>
+          <div class="col-md-6 d-flex gap-2 align-items-start">
+            <i class="bi bi-geo-alt me-2 text-red"></i>
+            <div>
+              <h6 class="fw-semibold mb-1">Location</h6>
+              <div class="text-muted" id="modalEventLocation">INTI International College Penang</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6 d-flex gap-2 align-items-start">
+            <i class="bi bi-people me-2 text-red"></i>
+            <div>
+              <h6 class="fw-semibold mb-1">Registered</h6>
+              <div class="text-muted" id="modalEventRegistered">88 / 150 people</div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- About this event -->
+        <div>
+          <h6 class="fw-semibold mb-2">About this event</h6>
+          <p class="text-muted mb-0" id="modalEventDescription">Join us for an awareness month dedicated to mental health and counselling services. Learn about available resources and support systems.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer border-0">
+        <div class="row g-2 w-100">
+          <div class="col-9">
+            <button type="button" class="btn btn-red w-100">Register Now</button>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+
+    <script>
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    // Event data
+    const eventData = {
+      'Counselling Awareness Month 2024': {
+        image: 'img/CounsellingAwarenessMonth2024.jpg',
+        dateTime: 'Mon, 2 Sep 2024 • 10:00 AM',
+        location: 'INTI International College Penang',
+        registered: '88 / 150 people',
+        description: 'Join us for an awareness month dedicated to mental health and counselling services. Learn about available resources and support systems.'
+      },
+      'International Charity Food Festival': {
+        image: 'img/InternationalCharityFoodFestival.jpg',
+        dateTime: 'Mon, 2 Sep 2024 • 10:00 AM',
+        location: 'INTI International University',
+        registered: '80 / 120 people',
+        description: 'Experience a diverse culinary journey while supporting a great cause. Enjoy international cuisines and help raise funds for charity.'
+      },
+      'Anti-Drug Campaign': {
+        image: 'img/Anti-DrugCampaign.jpg',
+        dateTime: 'Mon, 2 Sep 2024 • 10:00 AM',
+        location: 'INTI International College Subang',
+        registered: '67 / 100 people',
+        description: 'Join our campaign to raise awareness about the dangers of drug abuse. Learn prevention strategies and support available resources.'
+      },
+      'Fun Games for Happy Minds': {
+        image: 'img/FunGamesforHappyMinds.jpg',
+        dateTime: 'Sat, 26 Oct 2024 • 12:00 PM',
+        location: 'INTI International College Subang',
+        registered: '82 / 150 people',
+        description: 'Join us for an exciting afternoon filled with laughter, games, and relaxation! Fun Games for Happy Minds is a cheerful carnival-themed event designed to help students unwind, meet new friends, and de-stress from their busy schedules.\n\nExpect thrilling mini games, lucky draws, and interactive booths that bring joy and smiles to everyone. And yes—food trucks will be there with tasty snacks and cool drinks to keep your energy high!\n\nWhether you\'re coming with friends or flying solo, this event promises a fun-filled experience where happiness takes center stage. Don\'t miss out—come play, eat, and enjoy!'
+      }
+    };
+
+    // Get all event cards
+    const eventCards = document.querySelectorAll('.event-card');
+    const modal = document.getElementById('eventDetailsModal');
+    const bsModal = new bootstrap.Modal(modal);
+
+    eventCards.forEach(card => {
+      card.style.cursor = 'pointer';
+      
+      card.addEventListener('click', function () {
+        const eventTitle = this.querySelector('.card-title').textContent;
+        const data = eventData[eventTitle];
+
+        if (data) {
+          // Update modal content
+          document.getElementById('modalEventTitle').textContent = eventTitle;
+          document.getElementById('modalEventImage').src = data.image;
+          document.getElementById('modalEventImage').alt = eventTitle;
+          document.getElementById('modalEventDateTime').textContent = data.dateTime;
+          document.getElementById('modalEventLocation').textContent = data.location;
+          document.getElementById('modalEventRegistered').textContent = data.registered;
+          document.getElementById('modalEventDescription').textContent = data.description;
+
+          // Show modal
+          bsModal.show();
+        }
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

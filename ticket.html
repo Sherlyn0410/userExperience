@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTI - My Tickets</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="ticket.html">
+    <!-- navbar will be injected here -->
+    <div id="main-navbar"></div>
+
+    <!-- Page header (red) -->
+    <header class="page-header">
+        <div class="container px-2 py-4">
+            <h2 class="m-0 text-white">My Tickets</h2>
+        </div>
+    </header>
+
+    <main class="py-4">
+        <div class="container">
+            <!-- Tabs row + search + sort filter on the right -->
+            <div class="d-flex align-items-center justify-content-between gap-3 mb-3 flex-wrap">
+                <div class="status-tabs d-flex align-items-center flex-wrap">
+                    <button class="status-tab-btn me-2 active" data-filter="upcoming" type="button">Upcoming Events <span class="tab-count">(0)</span></button>
+                    <button class="status-tab-btn me-2" data-filter="past" type="button">Past Events <span class="tab-count">(0)</span></button>
+                    <button class="status-tab-btn me-2" data-filter="pending" type="button">Pending Approval <span class="tab-count">(0)</span></button>
+                </div>
+
+                <div class="d-flex align-items-center gap-3 ms-auto">
+                    <div class="input-group" style="width: 400px;">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" id="ticketSearch" class="form-control border-start-0" placeholder="Search tickets..." style="height: 48px;">
+                    </div>
+                
+                    <select id="sortFilter" class="form-select" style="height: 48px; width: auto; min-width: 180px;">
+                        <option value="date-desc">Date (Newest)</option>
+                        <option value="date-asc">Date (Oldest)</option>
+                        <option value="alpha-asc">Name (A-Z)</option>
+                        <option value="alpha-desc">Name (Z-A)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Tickets list -->
+            <div id="ticketsList" class="list-group">
+                <!-- Ticket 1: Fun Games for Happy Minds (Upcoming) -->
+                <div class="list-group-item mb-3 p-3 rounded-3 border" data-status="upcoming" data-title="Fun Games for Happy Minds" data-date="2025-10-26">
+                    <div class="row g-3 align-items-start">
+                        <div class="col-auto">
+                            <div class="text-center" style="min-width: 80px;">
+                                <div class="fw-bold text-uppercase text-muted" style="font-size: 0.75rem;">OCT</div>
+                                <div class="display-6 fw-bold text-dark">26</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img src="img/FunGamesforHappyMinds.jpg" class="card-img-top rounded-3" alt="Fun Games for Happy Minds">
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title mb-2">Fun Games for Happy Minds</h5>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-calendar3 me-2"></i> Oct 26, 2025 • 12:00 PM - 4:00 PM
+                            </div>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-geo-alt me-2"></i> INTI International College Subang
+                            </div>
+                            <div class="text-muted event-meta">
+                                <i class="bi bi-people me-2"></i> 82/150
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ticket 2: Anti-Drug Campaign (pending) -->
+                <div class="list-group-item mb-3 p-3 rounded-3 border" data-status="pending" data-title="Anti-Drug Campaign" data-date="2025-10-26">
+                    <div class="row g-3 align-items-start">
+                        <div class="col-auto">
+                            <div class="text-center" style="min-width: 80px;">
+                                <div class="fw-bold text-uppercase text-muted" style="font-size: 0.75rem;">OCT</div>
+                                <div class="display-6 fw-bold text-dark">26</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img src="img/Anti-DrugCampaign.jpg" class="card-img-top rounded-3" alt="Anti-Drug Campaign">
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title mb-2">Anti-Drug Campaign</h5>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-calendar3 me-2"></i> Oct 26, 2025 • 2:00 PM - 6:00 PM
+                            </div>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-geo-alt me-2"></i> INTI International University
+                            </div>
+                            <div class="text-muted event-meta">
+                                <i class="bi bi-people me-2"></i> 67/100
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ticket 3: International Charity Food Festival (Past) -->
+                <div class="list-group-item mb-3 p-3 rounded-3 border" data-status="past" data-title="International Charity Food Festival" data-date="2025-06-03">
+                    <div class="row g-3 align-items-start">
+                        <div class="col-auto">
+                            <div class="text-center" style="min-width: 80px;">
+                                <div class="fw-bold text-uppercase text-muted" style="font-size: 0.75rem;">JUN</div>
+                                <div class="display-6 fw-bold text-dark">03</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img src="img/InternationalCharityFoodFestival.jpg" class="card-img-top rounded-3" alt="International Charity Food Festival">
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title mb-2">International Charity Food Festival</h5>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-calendar3 me-2"></i> Jun 3, 2025 • 2:00 PM - 6:00 PM
+                            </div>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-geo-alt me-2"></i> INTI International University
+                            </div>
+                            <div class="text-muted event-meta">
+                                <i class="bi bi-people me-2"></i> 42/100
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ticket 4: Tech Innovation Summit (upcoming) -->
+                <div class="list-group-item mb-3 p-3 rounded-3 border" data-status="upcoming" data-title="Tech Innovation Summit" data-date="2025-12-15">
+                    <div class="row g-3 align-items-start">
+                        <div class="col-auto">
+                            <div class="text-center" style="min-width: 80px;">
+                                <div class="fw-bold text-uppercase text-muted" style="font-size: 0.75rem;">DEC</div>
+                                <div class="display-6 fw-bold text-dark">15</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <img src="img/techsummit.jpeg" class="card-img-top rounded-3" alt="Tech Innovation Summit">
+                        </div>
+                        <div class="col">
+                            <h5 class="card-title mb-2">
+                                Tech Innovation Summit 
+                            </h5>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-calendar3 me-2"></i> Dec 15, 2025 • 9:00 AM - 5:00 PM
+                            </div>
+                            <div class="text-muted event-meta mb-1">
+                                <i class="bi bi-geo-alt me-2"></i> INTI International University
+                            </div>
+                            <div class="text-muted event-meta">
+                                <i class="bi bi-people me-2"></i> 120/200
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Tickets Found Message -->
+            <div id="noTicketsMessage" class="text-center py-5" style="display: none;">
+                <i class="bi bi-ticket-perforated fs-1 text-muted"></i>
+                <p class="text-muted mt-3 mb-1 fw-semibold">No tickets found</p>
+                <p class="text-muted small">You don't have any tickets in this category</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+
+    <!-- Tab filter + sort script -->
+    <script>
+    (function () {
+        // Event data with descriptions
+        const eventData = {
+            'Fun Games for Happy Minds': {
+                description: 'Join us for an exciting afternoon filled with laughter, games, and relaxation! Fun Games for Happy Minds is a cheerful carnival-themed event designed to help students unwind, meet new friends, and de-stress from their busy schedules.\n\nExpect thrilling mini games, lucky draws, and interactive booths that bring joy and smiles to everyone. And yes—food trucks will be there with tasty snacks and cool drinks to keep your energy high!\n\nWhether you\'re coming with friends or flying solo, this event promises a fun-filled experience where happiness takes center stage. Don\'t miss out—come play, eat, and enjoy!'
+            },
+            'Anti-Drug Campaign': {
+                description: 'Join our campaign to raise awareness about the dangers of drug abuse. Learn prevention strategies and support available resources. This interactive event features expert speakers, informative booths, and engaging activities to educate students about making healthy life choices.'
+            },
+            'Counselling Awareness Month 2024': {
+                description: 'Join us for an awareness month dedicated to mental health and counselling services. Learn about available resources and support systems. This comprehensive program includes workshops, seminars, and one-on-one sessions designed to promote mental wellness and emotional well-being among students.'
+            },
+            'International Charity Food Festival': {
+                description: 'Experience a diverse culinary journey while supporting a great cause. Enjoy international cuisines and help raise funds for charity. This festival brings together food vendors from around the world, offering students a chance to taste authentic dishes while contributing to meaningful charitable initiatives.'
+            },
+            'Tech Innovation Summit': {
+                description: 'Join the forefront of technological innovation at our annual Tech Innovation Summit. Network with industry leaders, attend workshops on emerging technologies, and discover the latest trends in AI, blockchain, and sustainable tech solutions.'
+            }
+        };
+
+        let items = [];
+        let tabs = [];
+        let sortFilter = null;
+        let ticketSearch = null;
+        let noTicketsMessage = null;
+        let ticketsList = null;
+        let ticketModal = null;
+        let bsTicketModal = null;
+        let eventCountNumber = null;
+
+        function updateTabCounts() {
+            tabs.forEach(tab => {
+                const filter = tab.getAttribute('data-filter');
+                const count = items.filter(item => item.dataset.status === filter).length;
+                const countSpan = tab.querySelector('.tab-count');
+                if (countSpan) {
+                    countSpan.textContent = `(${count})`;
+                }
+            });
+        }
+
+        function checkVisibleTickets() {
+            const visibleCount = items.filter(it => it.style.display !== 'none').length;
+            
+            // Update event count
+            if (eventCountNumber) {
+                eventCountNumber.textContent = visibleCount;
+            }
+            
+            if (visibleCount === 0) {
+                noTicketsMessage.style.display = 'block';
+                ticketsList.style.display = 'none';
+            } else {
+                noTicketsMessage.style.display = 'none';
+                ticketsList.style.display = 'block';
+            }
+        }
+
+        function sortItems(sortBy) {
+            const sortedItems = [...items].sort((a, b) => {
+                if (sortBy === 'date-desc' || sortBy === 'date-asc') {
+                    const dateA = new Date(a.dataset.date);
+                    const dateB = new Date(b.dataset.date);
+                    return sortBy === 'date-desc' ? dateB - dateA : dateA - dateB;
+                } else if (sortBy === 'alpha-asc' || sortBy === 'alpha-desc') {
+                    const titleA = a.dataset.title.toLowerCase();
+                    const titleB = b.dataset.title.toLowerCase();
+                    if (sortBy === 'alpha-asc') {
+                        return titleA.localeCompare(titleB);
+                    } else {
+                        return titleB.localeCompare(titleA);
+                    }
+                }
+                return 0;
+            });
+
+            // Re-append items in sorted order
+            sortedItems.forEach(item => {
+                ticketsList.appendChild(item);
+            });
+        }
+
+        function applyFilters() {
+            const searchTerm = ticketSearch ? ticketSearch.value.toLowerCase().trim() : '';
+            const activeFilter = document.querySelector('.status-tab-btn.active')?.getAttribute('data-filter');
+
+            items.forEach(it => {
+                const status = it.getAttribute('data-status') || '';
+                const title = it.dataset.title.toLowerCase();
+                const cardText = it.textContent.toLowerCase();
+
+                // Check if matches active tab
+                const matchesTab = !activeFilter || status === activeFilter;
+
+                // Check if matches search term (search in title and card content)
+                const matchesSearch = !searchTerm || title.includes(searchTerm) || cardText.includes(searchTerm);
+
+                // Show only if matches both filters
+                if (matchesTab && matchesSearch) {
+                    it.style.display = '';
+                } else {
+                    it.style.display = 'none';
+                }
+            });
+
+            checkVisibleTickets();
+        }
+
+        function setActiveTab(clicked) {
+            tabs.forEach(t => t.classList.remove('active'));
+            clicked.classList.add('active');
+            applyFilters();
+        }
+
+        // Function to populate modal from ticket card
+        function populateModalFromTicket(ticketCard) {
+            const title = ticketCard.dataset.title || '';
+            const img = ticketCard.querySelector('img')?.src || '';
+            const status = ticketCard.dataset.status || '';
+            
+            // Extract date/time, location, and registered info
+            const metaEls = ticketCard.querySelectorAll('.event-meta');
+            const dateText = metaEls[0]?.textContent.replace(/\s+/g, ' ').trim() || '';
+            const locationText = metaEls[1]?.textContent.replace(/\s+/g, ' ').trim() || '';
+            const registeredText = metaEls[2]?.textContent.replace(/\s+/g, ' ').trim() || '';
+            
+            // Determine status badge
+            let statusBadge = '';
+            if (status === 'upcoming') {
+                statusBadge = '<span class="badge bg-success">Confirmed</span>';
+            } else if (status === 'past') {
+                statusBadge = '<span class="badge bg-secondary">Completed</span>';
+            } else if (status === 'pending') {
+                statusBadge = '<span class="badge bg-warning text-dark">Pending Approval</span>';
+            }
+            
+            const description = eventData[title]?.description || 'No description available.';
+
+            // Populate modal
+            document.getElementById('ticketModalTitle').textContent = title;
+            document.getElementById('ticketModalBanner').src = img;
+            document.getElementById('ticketDetailDate').textContent = dateText;
+            document.getElementById('ticketDetailLocation').textContent = locationText;
+            document.getElementById('ticketDetailRegistered').textContent = registeredText;
+            document.getElementById('ticketDetailStatus').innerHTML = statusBadge;
+            document.getElementById('ticketDetailAbout').textContent = description;
+        }
+
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get DOM elements after DOM is loaded
+            tabs = Array.from(document.querySelectorAll('.status-tab-btn'));
+            items = Array.from(document.querySelectorAll('#ticketsList .list-group-item'));
+            sortFilter = document.getElementById('sortFilter');
+            ticketSearch = document.getElementById('ticketSearch');
+            noTicketsMessage = document.getElementById('noTicketsMessage');
+            ticketsList = document.getElementById('ticketsList');
+            ticketModal = document.getElementById('ticketDetailsModal');
+            eventCountNumber = document.getElementById('eventCountNumber');
+            
+            if (ticketModal) {
+                bsTicketModal = new bootstrap.Modal(ticketModal);
+            }
+
+            // Update tab counts on load
+            updateTabCounts();
+
+            // Click handlers for tabs
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    setActiveTab(this);
+                });
+            });
+
+            // Sort filter change handler
+            if (sortFilter) {
+                sortFilter.addEventListener('change', function () {
+                    sortItems(this.value);
+                });
+            }
+
+            // Search input handler
+            if (ticketSearch) {
+                ticketSearch.addEventListener('input', function () {
+                    applyFilters();
+                });
+            }
+
+            // Click handler for ticket cards - show modal
+            items.forEach(item => {
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', function () {
+                    populateModalFromTicket(this);
+                    bsTicketModal.show();
+                });
+            });
+
+            // Default: show 'upcoming' tab on load
+            const initial = document.querySelector('.status-tab-btn.active') || tabs[0];
+            if (initial) setActiveTab(initial);
+            
+            // Apply default sort
+            if (sortFilter) {
+                sortItems(sortFilter.value);
+            }
+        });
+    })();
+    </script>
+
+    <!-- Ticket Details Modal -->
+    <div class="modal fade" id="ticketDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="ticketModalTitle">Event Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <div class="mb-3 modal-banner">
+                        <img src="" alt="event banner" class="img-fluid rounded-3 w-100" id="ticketModalBanner">
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-calendar3 me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Date and Time</h6>
+                                <div class="text-muted" id="ticketDetailDate">—</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-geo-alt me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Location</h6>
+                                <div class="text-muted" id="ticketDetailLocation">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-people me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Registered</h6>
+                                <div class="text-muted" id="ticketDetailRegistered">—</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-check-circle me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Status</h6>
+                                <div id="ticketDetailStatus">—</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6 class="fw-semibold mb-2">About this event</h6>
+                        <p class="text-muted mb-0" id="ticketDetailAbout">—</p>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

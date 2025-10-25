@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTI - Browse Events</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="search.html">
+    <!-- navbar will be injected here -->
+    <div id="main-navbar"></div>
+
+    <!-- Page header (red) -->
+    <header class="page-header">
+        <div class="container px-2 py-4">
+            <h2 class="m-0 text-white">Browse Events</h2>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-lg-8">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Search events you are interested here..." style="height: 48px;">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <select id="campusFilter" class="form-select" style="height: 48px;">
+                        <option value="">All Campuses</option>
+                        <option value="INTI International University">INTI International University</option>
+                        <option value="INTI International College Subang">INTI International College Subang</option>
+                        <option value="INTI International College Penang">INTI International College Penang</option>
+                        <option value="INTI International College Sabah">INTI International College Sabah</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-5">
+        <div class="container">
+            <div id="eventsContainer" class="row g-4">
+                <!-- International Charity Food Festival -->
+                <div class="col-lg-3 col-md-6 event-item" data-title="International Charity Food Festival" data-campus="INTI International University" data-date="Mon, 2 Sep 2024 • 10:00 AM">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/InternationalCharityFoodFestival.jpg" class="card-img-top" alt="International Charity Food Festival">
+                        <div class="card-body">
+                            <h5 class="card-title">International Charity Food Festival</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International University
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    80 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Anti-Drug Campaign -->
+                <div class="col-lg-3 col-md-6 event-item" data-title="Anti-Drug Campaign" data-campus="INTI International College Penang" data-date="Mon, 2 Sep 2024 • 10:00 AM">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/Anti-DrugCampaign.jpg" class="card-img-top" alt="Anti-Drug Campaign">
+                        <div class="card-body">
+                            <h5 class="card-title">Anti-Drug Campaign</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International College Penang
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    67 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fun Games for Happy Minds -->
+                <div class="col-lg-3 col-md-6 event-item" data-title="Fun Games for Happy Minds" data-campus="INTI International College Subang" data-date="Mon, 2 Sep 2024 • 10:00 AM">
+                    <div class="card event-card h-100 shadow-sm">
+                        <img src="img/FunGamesforHappyMinds.jpg" class="card-img-top" alt="Fun Games for Happy Minds">
+                        <div class="card-body">
+                            <h5 class="card-title">Fun Games for Happy Minds</h5>
+                            <div class="event-meta text-muted small mb-2">
+                                <div class="mb-1">
+                                    <i class="bi bi-calendar3 me-1"></i>
+                                    Mon, 2 Sep 2024 • 10:00 AM
+                                </div>
+                                <div class="mb-1">
+                                    <i class="bi bi-geo-alt me-1"></i>
+                                    INTI International College Subang
+                                </div>
+                                <div>
+                                    <i class="bi bi-people me-1"></i>
+                                    52 registered
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="text-center py-5" style="display: none;">
+                <i class="bi bi-search fs-1 text-muted"></i>
+                <p class="text-muted mt-3">No events found matching your criteria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Modal -->
+    <div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="modalEventTitle">Event Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <!-- Event Image -->
+                    <div class="mb-3 modal-banner">
+                        <img id="modalEventImage" src="" alt="Event image" class="img-fluid rounded-3 w-100">
+                    </div>
+
+                    <!-- Event Details Grid -->
+                    <div class="row mb-3">
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-calendar3 me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Date and Time</h6>
+                                <div class="text-muted" id="modalEventDateTime"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-geo-alt me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Location</h6>
+                                <div class="text-muted" id="modalEventLocation"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 d-flex gap-2 align-items-start">
+                            <i class="bi bi-people me-2 text-red"></i>
+                            <div>
+                                <h6 class="fw-semibold mb-1">Registered</h6>
+                                <div class="text-muted" id="modalEventRegistered"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About this event -->
+                    <div class="mt-4">
+                        <h6 class="fw-semibold mb-2">About this event</h6>
+                        <p class="text-muted mb-0" id="modalEventDescription"></p>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <div class="row g-2 w-100">
+                        <div class="col-9">
+                            <button type="button" class="btn btn-red w-100">Register Now</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-outline-secondary w-100" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast for registration success - top-right -->
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+        <div id="registrationToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <strong>Registration submitted!</strong><br>
+                    <small>Your registration is pending approval from the event organizer.</small>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+
+    <script>
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    // Event data
+    const eventData = {
+      'International Charity Food Festival': {
+        image: 'img/InternationalCharityFoodFestival.jpg',
+        dateTime: 'Mon, 2 Sep 2024 • 10:00 AM',
+        location: 'INTI International University',
+        registered: '80 / 120 people',
+        description: 'Experience a diverse culinary journey while supporting a great cause. Enjoy international cuisines and help raise funds for charity.'
+      },
+      'Anti-Drug Campaign': {
+        image: 'img/Anti-DrugCampaign.jpg',
+        dateTime: 'Mon, 2 Sep 2024 • 10:00 AM',
+        location: 'INTI International College Penang',
+        registered: '67 / 100 people',
+        description: 'Join our campaign to raise awareness about the dangers of drug abuse. Learn prevention strategies and support available resources.'
+      },
+      'Fun Games for Happy Minds': {
+        image: 'img/FunGamesforHappyMinds.jpg',
+        dateTime: 'Sat, 26 Oct 2024 • 12:00 PM',
+        location: 'INTI International College Subang',
+        registered: '82 / 150 people',
+        description: 'Join us for an exciting afternoon filled with laughter, games, and relaxation! Fun Games for Happy Minds is a cheerful carnival-themed event designed to help students unwind, meet new friends, and de-stress from their busy schedules.\n\nExpect thrilling mini games, lucky draws, and interactive booths that bring joy and smiles to everyone. And yes—food trucks will be there with tasty snacks and cool drinks to keep your energy high!\n\nWhether you\'re coming with friends or flying solo, this event promises a fun-filled experience where happiness takes center stage. Don\'t miss out—come play, eat, and enjoy!'
+      }
+    };
+
+    // Get DOM elements
+    const searchInput = document.getElementById('searchInput');
+    const campusFilter = document.getElementById('campusFilter');
+    const eventItems = document.querySelectorAll('.event-item');
+    const noResults = document.getElementById('noResults');
+    const modal = document.getElementById('eventDetailsModal');
+    const bsModal = new bootstrap.Modal(modal);
+
+    // Filter function
+    function filterEvents() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const selectedCampus = campusFilter.value;
+      let visibleCount = 0;
+
+      eventItems.forEach(item => {
+        const title = item.dataset.title.toLowerCase();
+        const campus = item.dataset.campus;
+        const date = item.dataset.date.toLowerCase();
+
+        // Check if matches search term (title or date)
+        const matchesSearch = !searchTerm || 
+                            title.includes(searchTerm) || 
+                            date.includes(searchTerm);
+
+        // Check if matches campus filter
+        const matchesCampus = !selectedCampus || campus === selectedCampus;
+
+        // Show/hide based on both filters
+        if (matchesSearch && matchesCampus) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Show/hide no results message
+      if (visibleCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+
+    // Add event listeners for search and filter
+    searchInput.addEventListener('input', filterEvents);
+    campusFilter.addEventListener('change', filterEvents);
+
+    // Handle event card clicks
+    const eventCards = document.querySelectorAll('.event-card');
+    eventCards.forEach(card => {
+      card.style.cursor = 'pointer';
+      
+      card.addEventListener('click', function () {
+        const eventTitle = this.querySelector('.card-title').textContent;
+        const data = eventData[eventTitle];
+
+        if (data) {
+          // Update modal content
+          document.getElementById('modalEventTitle').textContent = eventTitle;
+          document.getElementById('modalEventImage').src = data.image;
+          document.getElementById('modalEventImage').alt = eventTitle;
+          document.getElementById('modalEventDateTime').textContent = data.dateTime;
+          document.getElementById('modalEventLocation').textContent = data.location;
+          document.getElementById('modalEventRegistered').textContent = data.registered;
+          document.getElementById('modalEventDescription').textContent = data.description;
+
+          // Show modal
+          bsModal.show();
+        }
+      });
+    });
+
+    // Handle Register Now button click
+    const registerBtn = modal.querySelector('.btn-red');
+    if (registerBtn) {
+      registerBtn.addEventListener('click', function() {
+        // Close the modal
+        bsModal.hide();
+        
+        // Show success toast after modal is hidden
+        modal.addEventListener('hidden.bs.modal', function showToast() {
+          const toastEl = document.getElementById('registrationToast');
+          if (toastEl) {
+            const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+            toast.show();
+          }
+          // Remove event listener after showing toast once
+          modal.removeEventListener('hidden.bs.modal', showToast);
+        });
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

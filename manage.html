@@ -30,18 +30,18 @@
       <!-- Tabs row + search/create on the right -->
       <div class="d-flex align-items-center justify-content-between gap-3 mb-3 flex-wrap">
         <div class="status-tabs d-flex align-items-center flex-wrap">
-          <button class="status-tab-btn me-2 active" data-filter="active" type="button">Active</button>
-          <button class="status-tab-btn me-2" data-filter="completed" type="button">Completed</button>
-          <button class="status-tab-btn me-2" data-filter="pending" type="button">Pending</button>
+          <button class="status-tab-btn me-2 active" data-filter="active" type="button">Active <span class="tab-count">(0)</span></button>
+          <button class="status-tab-btn me-2" data-filter="completed" type="button">Completed <span class="tab-count">(0)</span></button>
+          <button class="status-tab-btn me-2" data-filter="pending" type="button">Pending <span class="tab-count">(0)</span></button>
         </div>
 
         <div class="d-flex align-items-center gap-3 ms-auto">
-          <div class="input-group" style="width:480px;">
+          <div class="input-group" style="width:400px;">
             <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-            <input id="eventSearch" type="text" class="form-control border-start-0" placeholder="Search events here..." aria-label="Search events">
+            <input id="eventSearch" type="text" class="form-control border-start-0" placeholder="Search events here..." aria-label="Search events" style="height:48px;">
           </div>
 
-          <a href="create.html" class="btn btn-red d-flex align-items-center gap-2 text-nowrap">
+          <a href="create.html" class="btn btn-red d-flex align-items-center gap-2 text-nowrap" style="height:48px;">
             <i class="bi bi-plus-lg"></i>
             Create Event
           </a>
@@ -78,7 +78,7 @@
                   </button>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventMenu1">
                     <li><a class="dropdown-item" href="edit-event.html">Edit event details</a></li>
-                    <li><a class="dropdown-item" href="attendees.html">View attendees</a></li>
+                    <li><a class="dropdown-item" href="#">View attendees</a></li>
                     <li><a class="dropdown-item" href="#" data-action="export-csv">Export CSV</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><button class="dropdown-item text-danger" data-action="delete-event" type="button">Delete</button></li>
@@ -163,7 +163,7 @@
                   </button>
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventMenu3">
                     <li><a class="dropdown-item" href="edit-event.html">Edit event details</a></li>
-                    <li><a class="dropdown-item" href="attendees.html">View attendees</a></li>
+                    <li><a class="dropdown-item" href="#">View attendees</a></li>
                     <li><a class="dropdown-item" href="#" data-action="export-csv">Export CSV</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><button class="dropdown-item text-danger" data-action="delete-event" type="button">Delete</button></li>
@@ -175,6 +175,13 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- No Events Found Message -->
+      <div id="noEventsMessage" class="text-center py-5" style="display: none;">
+        <i class="bi bi-calendar-x fs-1 text-muted"></i>
+        <p class="text-muted mt-3 mb-1 fw-semibold">No events found</p>
+        <p class="text-muted small">Try adjusting your search or filter criteria</p>
       </div>
     </div>
   </main>
@@ -429,9 +436,7 @@
             </div>
           </div>
 
-          <hr>
-
-          <div>
+          <div class="mt-4">
             <h6 class="fw-semibold">About this event</h6>
             <p class="text-muted detail-about mb-0">—</p>
           </div>
@@ -487,66 +492,108 @@
     })();
   </script>
 
-  <!-- Tab filter + search script (updated selectors for custom tabs) -->
+  <!-- Tab filter + search script (updated with no results message and counts) -->
   <script>
-    (function () {
-      const tabs = Array.from(document.querySelectorAll('.status-tab-btn'));
-      const items = Array.from(document.querySelectorAll('#eventsList .list-group-item'));
-      const search = document.getElementById('eventSearch');
+  (function () {
+    const tabs = Array.from(document.querySelectorAll('.status-tab-btn'));
+    const items = Array.from(document.querySelectorAll('#eventsList .list-group-item'));
+    const search = document.getElementById('eventSearch');
+    const noEventsMessage = document.getElementById('noEventsMessage');
+    const eventsList = document.getElementById('eventsList');
+    const eventCountNumber = document.getElementById('eventCountNumber');
 
-      function applyFilter(status) {
-        items.forEach(it => {
-          const s = it.getAttribute('data-status') || '';
-          // show all if status is falsy
-          if (!status || s === status) {
-            it.style.display = '';
-          } else {
-            it.style.display = 'none';
-          }
-        });
-      }
-
-      function setActiveTab(clicked) {
-        tabs.forEach(t => t.classList.remove('active'));
-        clicked.classList.add('active');
-        applyFilter(clicked.getAttribute('data-filter'));
-        // re-run search to respect current query
-        if (search && search.value.trim()) {
-          const ev = new Event('input');
-          search.dispatchEvent(ev);
-        }
-      }
-
-      // click handlers
+    function updateTabCounts() {
       tabs.forEach(tab => {
-        tab.addEventListener('click', function () {
-          setActiveTab(this);
-        }, { passive: true });
+        const filter = tab.getAttribute('data-filter');
+        const count = items.filter(item => item.dataset.status === filter).length;
+        const countSpan = tab.querySelector('.tab-count');
+        if (countSpan) {
+          countSpan.textContent = `(${count})`;
+        }
       });
+    }
 
-      // default: show 'active' tab on load
-      document.addEventListener('DOMContentLoaded', function () {
-        const initial = document.querySelector('.status-tab-btn.active') || tabs[0];
-        if (initial) setActiveTab(initial);
-      });
-
-      // simple search (within visible items)
-      if (search) {
-        search.addEventListener('input', function () {
-          const q = this.value.trim().toLowerCase();
-          items.forEach(it => {
-            // if hidden by tab, keep hidden
-            if (it.style.display === 'none' && !(it.getAttribute('data-status') === (document.querySelector('.status-tab-btn.active')?.getAttribute('data-filter')))) {
-              // already hidden by tab filter
-              return;
-            }
-            const txt = it.innerText.toLowerCase();
-            it.style.display = txt.includes(q) ? '' : 'none';
-          });
-        }, { passive: true });
+    function checkVisibleEvents() {
+      const visibleCount = items.filter(it => it.style.display !== 'none').length;
+      
+      // Update event count
+      if (eventCountNumber) {
+        eventCountNumber.textContent = visibleCount;
       }
-    })();
-  </script>
+      
+      if (visibleCount === 0) {
+        noEventsMessage.style.display = 'block';
+        eventsList.style.display = 'none';
+      } else {
+        noEventsMessage.style.display = 'none';
+        eventsList.style.display = 'block';
+      }
+    }
+
+    function applyFilter(status) {
+      items.forEach(it => {
+        const s = it.getAttribute('data-status') || '';
+        // show all if status is falsy
+        if (!status || s === status) {
+          it.style.display = '';
+        } else {
+          it.style.display = 'none';
+        }
+      });
+      checkVisibleEvents();
+    }
+
+    function setActiveTab(clicked) {
+      tabs.forEach(t => t.classList.remove('active'));
+      clicked.classList.add('active');
+      applyFilter(clicked.getAttribute('data-filter'));
+      // re-run search to respect current query
+      if (search && search.value.trim()) {
+        const ev = new Event('input');
+        search.dispatchEvent(ev);
+      }
+    }
+
+    // click handlers
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        setActiveTab(this);
+      }, { passive: true });
+    });
+
+    // default: show 'active' tab on load
+    document.addEventListener('DOMContentLoaded', function () {
+      // Update tab counts first
+      updateTabCounts();
+      
+      const initial = document.querySelector('.status-tab-btn.active') || tabs[0];
+      if (initial) setActiveTab(initial);
+    });
+
+    // simple search (within visible items)
+    if (search) {
+      search.addEventListener('input', function () {
+        const q = this.value.trim().toLowerCase();
+        const activeFilter = document.querySelector('.status-tab-btn.active')?.getAttribute('data-filter');
+        
+        items.forEach(it => {
+          const status = it.getAttribute('data-status');
+          const matchesTab = !activeFilter || status === activeFilter;
+          
+          if (!matchesTab) {
+            it.style.display = 'none';
+            return;
+          }
+          
+          const txt = it.innerText.toLowerCase();
+          it.style.display = txt.includes(q) ? '' : 'none';
+        });
+        
+        checkVisibleEvents();
+      }, { passive: true });
+    }
+  })();
+</script>
 
   <!-- wire card click -> show details modal (put before closing body tag) -->
   <script>

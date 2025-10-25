@@ -12,7 +12,7 @@
               <a class="nav-link" href="index.html" data-key="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="browse.html" data-key="browse.html">Browse events</a>
+              <a class="nav-link" href="search.html" data-key="search.html">Browse events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="create.html" data-key="create.html">Create an event</a>
@@ -21,7 +21,7 @@
               <a class="nav-link" href="manage.html" data-key="manage.html">Manage events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="tickets.html" data-key="tickets.html">Tickets</a>
+              <a class="nav-link" href="ticket.html" data-key="ticket.html">Tickets</a>
             </li>
           </ul>
         </div>
@@ -34,11 +34,11 @@
             <span class="nav-username">Sherlyn Kuan</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="tickets.html">My Tickets</a></li>
+            <li><a class="dropdown-item" href="ticket.html">My Tickets</a></li>
             <li><a class="dropdown-item" href="profile.html">Profile</a></li>
             <li><a class="dropdown-item" href="settings.html">Settings</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="login.html">Logout</a></li>
+            <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
             </ul>
         </div>
         </div>

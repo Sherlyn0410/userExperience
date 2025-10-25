@@ -14,14 +14,14 @@
     <!-- Custom CSS -->
     <link href="style.css" rel="stylesheet">
 </head>
-<body data-page="create.html">
+<body data-page="edit-event.html">
     <!-- navbar will be injected here -->
     <div id="main-navbar"></div>
 
     <!-- Page header (red) -->
     <header class="page-header">
       <div class="container px-2 py-4">
-          <h2 class="m-0 text-white">Create New Event</h2>
+          <h2 class="m-0 text-white">Edit Event</h2>
       </div>
     </header>
 
@@ -30,21 +30,25 @@
         <form class="create-event-form" action="">
           <div class="mb-4">
             <label class="form-label fw-semibold">What's the name of your event? <span class="text-danger">*</span></label>
-            <input class="form-control mb-2" type="text" placeholder="Event Title" required>
-            <textarea class="form-control" rows="4" placeholder="Event Description" required></textarea>
+            <input id="eventTitle" class="form-control mb-2" type="text" placeholder="Event Title" value="Fun Games for Happy Minds" required>
+            <textarea id="eventDescription" class="form-control" rows="4" placeholder="Event Description" required>Join us for an exciting afternoon filled with laughter, games, and relaxation! Fun Games for Happy Minds is a cheerful carnival-themed event designed to help students unwind, meet new friends, and de-stress from their busy schedules.
+
+Expect thrilling mini games, lucky draws, and interactive booths that bring joy and smiles to everyone. And yes—food trucks will be there with tasty snacks and cool drinks to keep your energy high!
+
+Whether you're coming with friends or flying solo, this event promises a fun-filled experience where happiness takes center stage. Don't miss out—come play, eat, and enjoy!</textarea>
           </div>
 
           <div class="mb-4">
             <label class="form-label fw-semibold">When does your event start and end? <span class="text-danger">*</span></label>
             <div class="row g-2">
               <div class="col-md-4">
-                <input class="form-control" type="date" required>
+                <input id="eventDate" class="form-control" type="date" value="2025-10-26" required>
               </div>
               <div class="col-md-4 d-flex gap-2">
-                <input class="form-control" type="time" placeholder="Start time" required>
+                <input id="eventStartTime" class="form-control" type="time" placeholder="Start time" value="12:00" required>
               </div>
               <div class="col-md-4 d-flex gap-2">
-                <input class="form-control" type="time" placeholder="End time" required>
+                <input id="eventEndTime" class="form-control" type="time" placeholder="End time" value="16:00" required>
               </div>
             </div>
           </div>
@@ -54,7 +58,7 @@
             <select id="campus" class="form-select" required>
               <option value="">Select campus</option>
               <option value="1">INTI International University</option>
-              <option value="2">INTI International College Subang</option>
+              <option value="2" selected>INTI International College Subang</option>
               <option value="3">INTI International College Penang</option>
               <option value="4">INTI International College Sabah</option>
             </select>
@@ -63,17 +67,21 @@
           <div class="mb-4">
             <label class="form-label fw-semibold">What's the capacity for your event? <span class="text-danger">*</span></label>
             <div class="text-muted mb-2">Event capacity refers to the maximum number of registrants allowed.</div>
-            <input class="form-control w-25" type="number" min="10" placeholder="Capacity" required>
+            <input id="eventCapacity" class="form-control w-25" type="number" min="10" placeholder="Capacity" value="150" required>
           </div>
 
           <div class="mb-4">
-            <label class="form-label fw-semibold">Upload Event Image <span class="text-danger">*</span></label><br>
-            <input class="form-control form-control-file w-auto" type="file" accept="image/*">
+            <label class="form-label fw-semibold">Upload Event Image <span class="text-danger">*</span></label>
+            <div class="mb-3">
+              <img id="currentImage" src="img/FunGamesforHappyMinds.jpg" alt="Current event image" class="img-thumbnail" style="max-width: 300px;">
+            </div>
+            <input id="eventImage" class="form-control form-control-file w-auto" type="file" accept="image/*">
+            <div class="form-text">Leave empty to keep current image</div>
           </div>
 
           <div class="d-flex justify-content-end gap-3">
-            <a href="index.html" class="btn btn-outline-secondary">Exit</a>
-            <button class="btn btn-red" type="submit">Create event</button>
+            <a href="manage.html" class="btn btn-outline-secondary">Cancel</a>
+            <button class="btn btn-red" type="submit">Save changes</button>
           </div>
         </form>
       </div>
@@ -88,6 +96,23 @@
         const form = document.querySelector('.create-event-form');
         if (!form) return;
 
+        // Handle image preview when user selects a new file
+        const imageInput = document.getElementById('eventImage');
+        const currentImage = document.getElementById('currentImage');
+        
+        if (imageInput && currentImage) {
+          imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = function(event) {
+                currentImage.src = event.target.result;
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+        }
+
         form.addEventListener('submit', function (e) {
           e.preventDefault();
 
@@ -95,9 +120,9 @@
           const submitBtn = form.querySelector('button[type="submit"]');
           if (submitBtn) submitBtn.disabled = true;
 
-          // redirect to manage page which will display the success toast (manage.html handles ?created=1)
+          // redirect to manage page which will display the success toast
           setTimeout(function () {
-            window.location.href = 'manage.html?created=1';
+            window.location.href = 'manage.html?updated=1';
           }, 150);
         }, { passive: false });
       })();

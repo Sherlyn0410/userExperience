@@ -204,6 +204,11 @@
   color: #333;
 }
 
+.text-red{
+    color: #B62020;
+    font-weight: 600;
+}
+
 .btn-red {
   background-color: #B62020;
   border: none;
@@ -281,7 +286,8 @@
 }
 
 /* Attendees list: make each item match the event card style */
-#attendeesModal .list-group-item {
+#attendeesModal .list-group-item,
+#attendeesModal2 .list-group-item {
   border: 1px solid #e6e6e6;
   border-radius: 12px;
   background-color: #fff;
@@ -294,8 +300,26 @@
   align-items: flex-start; /* top align content */
 }
 
+/* letter-only circular avatar used in attendees list */
+#attendeesModal .avatar,
+#attendeesModal2 .avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  user-select: none;
+  text-transform: none; /* keep original casing */
+}
+
 /* avatar sizing & consistent alignment */
-#attendeesModal .list-group-item .avatar {
+#attendeesModal .list-group-item .avatar,
+#attendeesModal2 .list-group-item .avatar {
   flex: 0 0 48px;
   width: 48px;
   height: 48px;
@@ -304,28 +328,39 @@
 }
 
 /* ensure metadata lines stack cleanly */
-#attendeesModal .list-group-item .small.text-muted {
+#attendeesModal .list-group-item .small.text-muted,
+#attendeesModal2 .list-group-item .small.text-muted {
   display: block;
   margin-top: 0.35rem;
 }
 
 /* action buttons column stays compact and aligned */
 #attendeesModal .list-group-item .accept-btn,
-#attendeesModal .list-group-item .reject-btn {
+#attendeesModal .list-group-item .reject-btn,
+#attendeesModal2 .list-group-item .accept-btn,
+#attendeesModal2 .list-group-item .reject-btn {
   min-width: 96px;
   padding-left: 0.6rem;
   padding-right: 0.6rem;
 }
 
 /* remove extra default list-group spacing inside modal body */
-#attendeesModal .modal-body .list-group {
+#attendeesModal .modal-body .list-group,
+#attendeesModal2 .modal-body .list-group {
   padding: 0;
 }
 
 /* last-item spacing clean-up */
-#attendeesModal .list-group-item:last-child {
+#attendeesModal .list-group-item:last-child,
+#attendeesModal2 .list-group-item:last-child {
   margin-bottom: 0;
 }
+
+/* simple background color utilities (add more as needed) */
+.bg-purple { background-color: #8b5cf6 !important; }
+.bg-blue   { background-color: #0284c7 !important; }
+.bg-green  { background-color: #16a34a !important; }
+.bg-gray   { background-color: #6b7280 !important; }
 
 /* Responsive design */
 @media (max-width: 768px) {

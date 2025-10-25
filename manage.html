@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>INTI - Manage Events</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="style.css" rel="stylesheet">
+</head>
+<body data-page="manage.html">
+  <!-- navbar will be injected here -->
+  <div id="main-navbar"></div>
+
+  <!-- Page header (red) -->
+  <header class="page-header">
+    <div class="container px-2 py-4">
+      <h2 class="m-0 text-white">Manage Events</h2>
+    </div>
+  </header>
+
+  <main class="py-4">
+    <div class="container">
+      <!-- Tabs row + search/create on the right -->
+      <div class="d-flex align-items-center justify-content-between gap-3 mb-3 flex-wrap">
+        <div class="status-tabs d-flex align-items-center flex-wrap">
+          <button class="status-tab-btn me-2 active" data-filter="active" type="button">Active</button>
+          <button class="status-tab-btn me-2" data-filter="completed" type="button">Completed</button>
+          <button class="status-tab-btn me-2" data-filter="pending" type="button">Pending</button>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 ms-auto">
+          <div class="input-group" style="width:480px;">
+            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+            <input id="eventSearch" type="text" class="form-control border-start-0" placeholder="Search events here..." aria-label="Search events">
+          </div>
+
+          <a href="create.html" class="btn btn-red d-flex align-items-center gap-2 text-nowrap">
+            <i class="bi bi-plus-lg"></i>
+            Create Event
+          </a>
+        </div>
+      </div>
+
+      <!-- Events list -->
+      <div id="eventsList" class="list-group">
+        <!-- Event item 1 -->
+        <div class="list-group-item mb-3 event-card p-3 rounded-3" data-status="pending">
+          <div class="row g-3 align-items-start"> <!-- changed to align-items-start -->
+            <div class="col-4">
+              <img src="img/CounsellingAwarenessMonth2024.jpg" class="card-img-top rounded-3" alt="Counselling Awareness">
+            </div>
+            <div class="col-8">
+              <div class="d-flex align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title mb-2">Counselling Awareness Month 2024 <span class="badge rounded-pill bg-warning text-dark ms-2">Pending</span></h5>
+                  <div class="text-muted event-meta mb-1">
+                    <i class="bi bi-calendar3 me-2"></i> Oct 22, 2025 • 12:00 PM - 2:00 PM
+                  </div>
+                  <div class="text-muted event-meta mb-1">
+                    <i class="bi bi-geo-alt me-2"></i> INTI International College Penang
+                  </div>
+                  <div class="text-muted event-meta ">
+                    <i class="bi bi-people me-2"></i> 0/100
+                  </div>
+                </div>
+
+                <!-- dropdown menu for actions -->
+                <div class="ms-3 dropdown">
+                  <button class="btn btn-none" id="eventMenu1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Event options">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventMenu1">
+                    <li><a class="dropdown-item" href="edit-event.html">Edit event details</a></li>
+                    <li><a class="dropdown-item" href="attendees.html">View attendees</a></li>
+                    <li><a class="dropdown-item" href="#" data-action="export-csv">Export CSV</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><button class="dropdown-item text-danger" data-action="delete-event" type="button">Delete</button></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event item 2 (Fun Games) - add id and data-about so modal can populate -->
+        <div id="eventFunGames" class="list-group-item mb-3 event-card p-3 rounded-3" data-status="active"
+             data-about="Join us for an exciting afternoon filled with laughter, games, and relaxation! Fun Games for Happy Minds is a cheerful carnival-themed event designed to help students unwind, meet new friends, and de-stress from their busy schedules.
+             Expect thrilling mini games, lucky draws, and interactive booths that bring joy and smiles to everyone. And yes—food trucks will be there with tasty snacks and cool drinks to keep your energy high!
+             Whether you’re coming with friends or flying solo, this event promises a fun-filled experience where happiness takes center stage. Don’t miss out—come play, eat, and enjoy!">
+          <div class="row g-3 align-items-start">
+            <div class="col-4">
+              <img src="img/FunGamesforHappyMinds.jpg" class="card-img-top rounded-3" alt="Fun Games for Happy Minds">
+            </div>
+            <div class="col-8">
+              <div class="d-flex align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title mb-2">Fun Games for Happy Minds <span class="badge rounded-pill bg-success ms-2">Active</span></h5>
+
+                  <div class="text-muted event-meta mb-1">
+                    <i class="bi bi-calendar3 me-2"></i> Oct 26, 2025 • 12:00 PM - 4:00 PM
+                  </div>
+                  <div class="text-muted event-meta mb-1">
+                    <i class="bi bi-geo-alt me-2"></i> INTI International College Subang
+                  </div>
+                  <div class="text-muted event-meta">
+                    <i class="bi bi-people me-2"></i> 82/150
+                  </div>
+                </div>
+
+                <!-- dropdown menu for actions -->
+                <div class="ms-3 dropdown">
+                  <button class="btn btn-none" id="eventMenu2" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Event options">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <!-- Update the event card dropdown to use the first modal -->
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventMenu2">
+                    <li><a class="dropdown-item" href="edit-event.html">Edit event details</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#attendeesModal">View attendees</a></li>
+                    <li><a class="dropdown-item" href="#" data-action="export-csv">Export CSV</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><button class="dropdown-item text-danger" data-action="delete-event" type="button">Delete</button></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event item 3 -->
+        <div class="list-group-item mb-3 event-card p-3 rounded-3" data-status="completed">
+          <div class="row g-3 align-items-start"> <!-- changed to align-items-start -->
+            <div class="col-4">
+              <img src="img/InternationalCharityFoodFestival.jpg" class="card-img-top rounded-3" alt="International Charity Food Festival">
+            </div>
+            <div class="col-8">
+              <div class="d-flex align-items-start">
+                <div class="flex-grow-1">
+                  <h5 class="card-title mb-2">International Charity Food Festival <span class="badge rounded-pill bg-primary ms-2">Completed</span></h5>
+                  <div class="text-muted event-meta mb-1">
+                    <i class="bi bi-calendar3 me-2"></i> Jun 3, 2025 • 2:00 PM - 6:00 PM
+                  </div>
+                  <div class="text-muted event-meta mb-1">
+                    <i class="bi bi-geo-alt me-2"></i> INTI International University
+                  </div>
+                  <div class="text-muted small">
+                    <i class="bi bi-people me-2"></i> 42/100
+                  </div>
+                </div>
+
+                <!-- dropdown menu for actions -->
+                <div class="ms-3 dropdown">
+                  <button class="btn btn-none" id="eventMenu3" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Event options">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="eventMenu3">
+                    <li><a class="dropdown-item" href="edit-event.html">Edit event details</a></li>
+                    <li><a class="dropdown-item" href="attendees.html">View attendees</a></li>
+                    <li><a class="dropdown-item" href="#" data-action="export-csv">Export CSV</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><button class="dropdown-item text-danger" data-action="delete-event" type="button">Delete</button></li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast (event created success) - top-right with caption) -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100;">
+    <div id="eventCreatedToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <strong>Event created successfully</strong>
+          <div class="small mt-1 text-white-50">Pending admin approval</div>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <!-- Toast for event updated -->
+    <div id="eventUpdatedToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body">
+          <strong>Event updated successfully</strong>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attendees Modal (insert near end of body, before existing scripts) -->
+  <div class="modal fade" id="attendeesModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Attendees (82/150)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- attendee 1: Pending (with Accept / Reject) -->
+          <div class="list-group mb-3">
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar bg-purple">J</div> <!-- letter avatar -->
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start justify-content-between">
+                  <div>
+                    <div class="fw-semibold">Jane Smith <span class="badge rounded-pill bg-warning text-dark ms-2">Pending</span></div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-envelope me-2"></i> jane.smith@gmail.com
+                    </div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-telephone me-2"></i> +60182635478
+                    </div>
+                    <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/21/2025</div>
+                  </div>
+                  <div class="d-flex flex-column align-items-end gap-2">
+                    <button class="btn btn-outline-success btn-sm accept-btn" data-attendee="jane"><i class="bi bi-check-lg me-2 fs-6"></i>Accept</button>
+                    <button class="btn btn-outline-danger btn-sm reject-btn" data-attendee="jane"><i class="bi bi-x-lg me-2 fs-6"></i>Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- attendee 3: Confirmed -->
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar rounded-circle bg-purple text-white d-flex align-items-center justify-content-center" style="width:48px; height:48px; flex:0 0 48px;">M</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start justify-content-between">
+                  <div>
+                    <div class="fw-semibold">Mei Wei <span class="badge rounded-pill bg-warning text-dark ms-2">Pending</span></div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-envelope me-2"></i> mei.wei@gmail.com
+                    </div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-telephone me-2"></i> +60183824472
+                    </div>
+                    <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/19/2025</div>
+                  </div>
+                  <div class="d-flex flex-column align-items-end gap-2">
+                    <button class="btn btn-outline-success btn-sm accept-btn" data-attendee="jane"><i class="bi bi-check-lg me-2 fs-6"></i>Accept</button>
+                    <button class="btn btn-outline-danger btn-sm reject-btn" data-attendee="jane"><i class="bi bi-x-lg me-2 fs-6"></i>Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <!-- attendee 2: Confirmed -->
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar rounded-circle bg-purple text-white d-flex align-items-center justify-content-center" style="width:48px; height:48px; flex:0 0 48px;">J</div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold">John Doe <span class="badge rounded-pill bg-success ms-2">Confirmed</span></div>
+                <div class="small text-muted mt-1"><i class="bi bi-envelope me-2"></i> johndoe@gmail.com</div>
+                <div class="small text-muted mt-1"><i class="bi bi-telephone me-2"></i> +60162829345</div>
+                <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/17/2025</div>
+              </div>
+            </div>
+
+            <!-- attendee 3: Confirmed -->
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar rounded-circle bg-purple text-white d-flex align-items-center justify-content-center" style="width:48px; height:48px; flex:0 0 48px;">M</div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold">Mike Johnson <span class="badge rounded-pill bg-success ms-2">Confirmed</span></div>
+                <div class="small text-muted mt-1"><i class="bi bi-envelope me-2"></i> mike@gmail.com</div>
+                <div class="small text-muted mt-1"><i class="bi bi-telephone me-2"></i> +60182829478</div>
+                <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/15/2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Attendees Modal (duplicate with different id) -->
+  <div class="modal fade" id="attendeesModal2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">Attendees (82/150)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- attendee 1: Pending (with Accept / Reject) -->
+          <div class="list-group mb-3">
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar bg-purple">J</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start justify-content-between">
+                  <div>
+                    <div class="fw-semibold">Jane Smith <span class="badge rounded-pill bg-warning text-dark ms-2">Pending</span></div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-envelope me-2"></i> jane.smith@gmail.com
+                    </div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-telephone me-2"></i> +60182635478
+                    </div>
+                    <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/21/2025</div>
+                  </div>
+                  <div class="d-flex flex-column align-items-end gap-2">
+                    <button class="btn btn-outline-success btn-sm accept-btn" data-attendee="jane"><i class="bi bi-check-lg me-2 fs-6"></i>Accept</button>
+                    <button class="btn btn-outline-danger btn-sm reject-btn" data-attendee="jane"><i class="bi bi-x-lg me-2 fs-6"></i>Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- attendee 3: Pending -->
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar rounded-circle bg-purple text-white d-flex align-items-center justify-content-center" style="width:48px; height:48px; flex:0 0 48px;">M</div>
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-start justify-content-between">
+                  <div>
+                    <div class="fw-semibold">Mei Wei <span class="badge rounded-pill bg-warning text-dark ms-2">Pending</span></div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-envelope me-2"></i> mei.wei@gmail.com
+                    </div>
+                    <div class="small text-muted mt-1">
+                      <i class="bi bi-telephone me-2"></i> +60183824472
+                    </div>
+                    <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/19/2025</div>
+                  </div>
+                  <div class="d-flex flex-column align-items-end gap-2">
+                    <button class="btn btn-outline-success btn-sm accept-btn" data-attendee="mei"><i class="bi bi-check-lg me-2 fs-6"></i>Accept</button>
+                    <button class="btn btn-outline-danger btn-sm reject-btn" data-attendee="mei"><i class="bi bi-x-lg me-2 fs-6"></i>Reject</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <!-- attendee 2: Confirmed -->
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar rounded-circle bg-purple text-white d-flex align-items-center justify-content-center" style="width:48px; height:48px; flex:0 0 48px;">J</div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold">John Doe <span class="badge rounded-pill bg-success ms-2">Confirmed</span></div>
+                <div class="small text-muted mt-1"><i class="bi bi-envelope me-2"></i> johndoe@gmail.com</div>
+                <div class="small text-muted mt-1"><i class="bi bi-telephone me-2"></i> +60162829345</div>
+                <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/17/2025</div>
+              </div>
+            </div>
+
+            <!-- attendee 3: Confirmed -->
+            <div class="list-group-item d-flex gap-3 align-items-start rounded-3 p-3">
+              <div class="avatar rounded-circle bg-purple text-white d-flex align-items-center justify-content-center" style="width:48px; height:48px; flex:0 0 48px;">M</div>
+              <div class="flex-grow-1">
+                <div class="fw-semibold">Mike Johnson <span class="badge rounded-pill bg-success ms-2">Confirmed</span></div>
+                <div class="small text-muted mt-1"><i class="bi bi-envelope me-2"></i> mike@gmail.com</div>
+                <div class="small text-muted mt-1"><i class="bi bi-telephone me-2"></i> +60182829478</div>
+                <div class="small text-muted mt-1"><i class="bi bi-calendar3 me-2"></i> Registered on 10/15/2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Details Modal (shows when Fun Games card clicked) -->
+  <div class="modal fade" id="eventDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Event title</h5>
+
+          <!-- actions dropdown inside modal header (same items) -->
+          <div class="dropdown ms-3">
+            <button class="btn btn-none" id="modalEventMenu" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <!-- Update the event details modal dropdown to use the second modal -->
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="modalEventMenu">
+              <li><a class="dropdown-item" href="edit-event.html">Edit event details</a></li>
+              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#attendeesModal2">View attendees</a></li>
+              <li><a class="dropdown-item" href="#" data-action="export-csv">Export CSV</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item text-danger" data-action="delete-event" type="button">Delete</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="modal-body p-4">
+          <div class="mb-3 modal-banner">
+            <img src="" alt="event banner" class="img-fluid rounded-3 w-100" id="modalBanner">
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6 d-flex gap-2 align-items-center">
+                <i class="bi bi-calendar3 me-2 text-red"></i>
+                <div>
+                    <h6 class="fw-semibold">Date and Time</h6>
+                    <div class="text-muted detail-date">—</div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex gap-2 align-items-center">
+              <i class="bi bi-geo-alt me-2 text-red"></i>
+              <div>
+                  <h6 class="fw-semibold">Location</h6>
+                  <div class="text-muted detail-location">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6 d-flex gap-2 align-items-center">
+              <i class="bi bi-people me-2 text-red"></i>
+              <div>
+                <h6 class="fw-semibold">Registered</h6>
+                <div class="text-muted detail-registered">—</div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div>
+            <h6 class="fw-semibold">About this event</h6>
+            <p class="text-muted detail-about mb-0">—</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS + navbar injector -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="javascript.js"></script>
+
+  <!-- Show toast when redirected with ?created=1 (top-right) -->
+  <script>
+    (function () {
+      function showToastIfNeeded() {
+        try {
+          const params = new URLSearchParams(location.search);
+          
+          // Check for event created
+          if (params.get('created') === '1') {
+            const toastEl = document.getElementById('eventCreatedToast');
+            if (toastEl) {
+              const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+              toast.show();
+            }
+          }
+          
+          // Check for event updated
+          if (params.get('updated') === '1') {
+            const toastEl = document.getElementById('eventUpdatedToast');
+            if (toastEl) {
+              const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+              toast.show();
+            }
+          }
+          
+          // remove the query param so refresh won't re-show the toast
+          if (history.replaceState) {
+            const cleanUrl = location.pathname + location.hash;
+            history.replaceState(null, '', cleanUrl);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showToastIfNeeded);
+      } else {
+        showToastIfNeeded();
+      }
+    })();
+  </script>
+
+  <!-- Tab filter + search script (updated selectors for custom tabs) -->
+  <script>
+    (function () {
+      const tabs = Array.from(document.querySelectorAll('.status-tab-btn'));
+      const items = Array.from(document.querySelectorAll('#eventsList .list-group-item'));
+      const search = document.getElementById('eventSearch');
+
+      function applyFilter(status) {
+        items.forEach(it => {
+          const s = it.getAttribute('data-status') || '';
+          // show all if status is falsy
+          if (!status || s === status) {
+            it.style.display = '';
+          } else {
+            it.style.display = 'none';
+          }
+        });
+      }
+
+      function setActiveTab(clicked) {
+        tabs.forEach(t => t.classList.remove('active'));
+        clicked.classList.add('active');
+        applyFilter(clicked.getAttribute('data-filter'));
+        // re-run search to respect current query
+        if (search && search.value.trim()) {
+          const ev = new Event('input');
+          search.dispatchEvent(ev);
+        }
+      }
+
+      // click handlers
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function () {
+          setActiveTab(this);
+        }, { passive: true });
+      });
+
+      // default: show 'active' tab on load
+      document.addEventListener('DOMContentLoaded', function () {
+        const initial = document.querySelector('.status-tab-btn.active') || tabs[0];
+        if (initial) setActiveTab(initial);
+      });
+
+      // simple search (within visible items)
+      if (search) {
+        search.addEventListener('input', function () {
+          const q = this.value.trim().toLowerCase();
+          items.forEach(it => {
+            // if hidden by tab, keep hidden
+            if (it.style.display === 'none' && !(it.getAttribute('data-status') === (document.querySelector('.status-tab-btn.active')?.getAttribute('data-filter')))) {
+              // already hidden by tab filter
+              return;
+            }
+            const txt = it.innerText.toLowerCase();
+            it.style.display = txt.includes(q) ? '' : 'none';
+          });
+        }, { passive: true });
+      }
+    })();
+  </script>
+
+  <!-- wire card click -> show details modal (put before closing body tag) -->
+  <script>
+  (function () {
+    document.addEventListener('DOMContentLoaded', function () {
+      const card = document.getElementById('eventFunGames');
+      const modalEl = document.getElementById('eventDetailsModal');
+      if (!card || !modalEl) return;
+
+      const modal = new bootstrap.Modal(modalEl);
+
+      // helper to populate modal from card content / dataset
+      function populateModalFromCard(cardEl) {
+        const title = cardEl.querySelector('.card-title')?.innerText.trim() || '';
+        const img = cardEl.querySelector('img')?.src || '';
+        const metaEls = Array.from(cardEl.querySelectorAll('.event-meta, .text-muted.event-meta'));
+        const dateEl = metaEls[0];
+        const locationEl = metaEls[1];
+
+        // robust lookup for the registered text:
+        let registeredText = '';
+        const peopleParent = cardEl.querySelector('.bi-people')?.closest('.event-meta') 
+                          || cardEl.querySelector('.bi-person')?.closest('.event-meta');
+        if (peopleParent) {
+          registeredText = peopleParent.innerText.trim();
+        } else if (metaEls.length >= 3) {
+          registeredText = metaEls[2].innerText.trim();
+        } else {
+          const m = cardEl.innerText.match(/\d+\s*\/\s*\d+/);
+          registeredText = m ? m[0] : '';
+        }
+
+        const about = cardEl.dataset.about || '';
+
+        modalEl.querySelector('.modal-title').textContent = title;
+        modalEl.querySelector('#modalBanner').src = img;
+        modalEl.querySelector('.detail-date').textContent = dateEl ? dateEl.innerText.trim() : '';
+        modalEl.querySelector('.detail-location').textContent = locationEl ? locationEl.innerText.trim() : '';
+        modalEl.querySelector('.detail-registered').textContent = registeredText;
+        modalEl.querySelector('.detail-about').textContent = about;
+
+        // Store reference to the source card in the modal element
+        modalEl.dataset.sourceCardId = cardEl.id;
+
+        // Also store on the modalViewAttendees button if it exists
+        const modalViewAttendees = document.getElementById('modalViewAttendees');
+        if (modalViewAttendees) {
+          modalViewAttendees.dataset.cardId = cardEl.id;
+        }
+
+        // Store on dropdown menu items that link to attendees
+        const modalDropdown = modalEl.querySelector('.dropdown-menu');
+        if (modalDropdown) {
+          const attendeesLinks = modalDropdown.querySelectorAll('a[href="attendees.html"], a:has(.bi-people)');
+          attendeesLinks.forEach(link => {
+            link.dataset.cardId = cardEl.id;
+          });
+        }
+      }
+
+      // open modal when card is clicked, but ignore clicks inside dropdown toggle or its menu
+      card.addEventListener('click', function (e) {
+        if (e.target.closest('[data-bs-toggle="dropdown"]') || e.target.closest('.dropdown-menu')) {
+          return;
+        }
+        populateModalFromCard(card);
+        modal.show();
+      }, { passive: true });
+    });
+  })();
+</script>
+
+  <!-- unified attendees handler (keeps accept/reject) -->
+  <script>
+  (function () {
+    document.addEventListener('DOMContentLoaded', function () {
+      // Handle both attendees modals
+      const attendeesModalEl = document.getElementById('attendeesModal');
+      const attendeesModalEl2 = document.getElementById('attendeesModal2');
+      
+      // Helper function to check and show/hide "no pending" message
+      function updatePendingStatus(listGroup) {
+        const hr = listGroup.querySelector('hr');
+        if (!hr) return;
+        
+        // Find all items before the <hr> (pending section)
+        let currentEl = listGroup.firstElementChild;
+        let hasPending = false;
+        
+        while (currentEl && currentEl !== hr) {
+          if (currentEl.classList.contains('list-group-item')) {
+            hasPending = true;
+            break;
+          }
+          currentEl = currentEl.nextElementSibling;
+        }
+        
+        // Check if "no pending" message already exists
+        let noPendingMsg = listGroup.querySelector('.no-pending-message');
+        
+        if (!hasPending && !noPendingMsg) {
+          // Create and insert "no pending" message before <hr>
+          noPendingMsg = document.createElement('div');
+          noPendingMsg.className = 'no-pending-message text-center text-muted py-3';
+          noPendingMsg.innerHTML = '<em>No pending attendees at the moment</em>';
+          listGroup.insertBefore(noPendingMsg, hr);
+        } else if (hasPending && noPendingMsg) {
+          // Remove message if there are pending items
+          noPendingMsg.remove();
+        }
+      }
+      
+      // Clean up backdrop for first modal
+      if (attendeesModalEl) {
+        attendeesModalEl.addEventListener('hidden.bs.modal', function () {
+          document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.remove();
+          });
+          document.body.classList.remove('modal-open');
+          document.body.style.removeProperty('overflow');
+          document.body.style.removeProperty('padding-right');
+        });
+
+        // Accept / Reject handlers for first modal
+        attendeesModalEl.addEventListener('click', function (e) {
+          const acceptBtn = e.target.closest('.accept-btn');
+          const rejectBtn = e.target.closest('.reject-btn');
+
+          if (acceptBtn) {
+            const item = acceptBtn.closest('.list-group-item');
+            if (item) {
+              const badge = item.querySelector('.badge');
+              if (badge) {
+                badge.className = 'badge rounded-pill bg-success ms-2';
+                badge.textContent = 'Confirmed';
+              }
+              item.querySelectorAll('.accept-btn, .reject-btn').forEach(b => b.remove());
+              
+              // Move the item below the <hr>
+              const listGroup = item.closest('.list-group');
+              const hr = listGroup.querySelector('hr');
+              if (hr) {
+                // Insert the item after the <hr>
+                hr.parentNode.insertBefore(item, hr.nextSibling);
+                // Update pending status
+                updatePendingStatus(listGroup);
+              }
+            }
+          }
+
+          if (rejectBtn) {
+            const item = rejectBtn.closest('.list-group-item');
+            if (item) {
+              const badge = item.querySelector('.badge');
+              if (badge) {
+                badge.className = 'badge rounded-pill bg-danger ms-2';
+                badge.textContent = 'Rejected';
+              }
+              item.querySelectorAll('.accept-btn, .reject-btn').forEach(b => b.remove());
+              
+              // Move the item below the <hr>
+              const listGroup = item.closest('.list-group');
+              const hr = listGroup.querySelector('hr');
+              if (hr) {
+                // Insert the item after the <hr>
+                hr.parentNode.insertBefore(item, hr.nextSibling);
+                // Update pending status
+                updatePendingStatus(listGroup);
+              }
+            }
+          }
+        }, { passive: false });
+      }
+
+      // Clean up backdrop for second modal
+      if (attendeesModalEl2) {
+        attendeesModalEl2.addEventListener('hidden.bs.modal', function () {
+          document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.remove();
+          });
+          document.body.classList.remove('modal-open');
+          document.body.style.removeProperty('overflow');
+          document.body.style.removeProperty('padding-right');
+        });
+
+        // Accept / Reject handlers for second modal
+        attendeesModalEl2.addEventListener('click', function (e) {
+          const acceptBtn = e.target.closest('.accept-btn');
+          const rejectBtn = e.target.closest('.reject-btn');
+
+          if (acceptBtn) {
+            const item = acceptBtn.closest('.list-group-item');
+            if (item) {
+              const badge = item.querySelector('.badge');
+              if (badge) {
+                badge.className = 'badge rounded-pill bg-success ms-2';
+                badge.textContent = 'Confirmed';
+              }
+              item.querySelectorAll('.accept-btn, .reject-btn').forEach(b => b.remove());
+              
+              // Move the item below the <hr>
+              const listGroup = item.closest('.list-group');
+              const hr = listGroup.querySelector('hr');
+              if (hr) {
+                // Insert the item after the <hr>
+                hr.parentNode.insertBefore(item, hr.nextSibling);
+                // Update pending status
+                updatePendingStatus(listGroup);
+              }
+            }
+          }
+
+          if (rejectBtn) {
+            const item = rejectBtn.closest('.list-group-item');
+            if (item) {
+              const badge = item.querySelector('.badge');
+              if (badge) {
+                badge.className = 'badge rounded-pill bg-danger ms-2';
+                badge.textContent = 'Rejected';
+              }
+              item.querySelectorAll('.accept-btn, .reject-btn').forEach(b => b.remove());
+              
+              // Move the item below the <hr>
+              const listGroup = item.closest('.list-group');
+              const hr = listGroup.querySelector('hr');
+              if (hr) {
+                // Insert the item after the <hr>
+                hr.parentNode.insertBefore(item, hr.nextSibling);
+                // Update pending status
+                updatePendingStatus(listGroup);
+              }
+            }
+          }
+        }, { passive: false });
+      }
+    });
+  })();
+</script>

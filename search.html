@@ -51,8 +51,13 @@
     </section>
 
     <!-- Events Section -->
-    <section class="py-5">
+    <section class="py-3">
         <div class="container">
+            <!-- Event count display -->
+            <div id="eventCount" class="mb-3">
+                <p class="text-muted mb-0"><span id="eventCountNumber">0</span> event(s) found</p>
+            </div>
+
             <div id="eventsContainer" class="row g-4">
                 <!-- International Charity Food Festival -->
                 <div class="col-lg-3 col-md-6 event-item" data-title="International Charity Food Festival" data-campus="INTI International University" data-date="Mon, 2 Sep 2024 • 10:00 AM">
@@ -249,6 +254,7 @@
     const campusFilter = document.getElementById('campusFilter');
     const eventItems = document.querySelectorAll('.event-item');
     const noResults = document.getElementById('noResults');
+    const eventCountNumber = document.getElementById('eventCountNumber');
     const modal = document.getElementById('eventDetailsModal');
     const bsModal = new bootstrap.Modal(modal);
 
@@ -280,12 +286,22 @@
         }
       });
 
+      // Update event count
+      if (eventCountNumber) {
+        eventCountNumber.textContent = visibleCount;
+      }
+
       // Show/hide no results message
       if (visibleCount === 0) {
         noResults.style.display = 'block';
       } else {
         noResults.style.display = 'none';
       }
+    }
+
+    // Initialize count on page load
+    if (eventCountNumber) {
+      eventCountNumber.textContent = eventItems.length;
     }
 
     // Add event listeners for search and filter
